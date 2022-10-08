@@ -9,7 +9,7 @@ according to the needs, the knowledge about the development tools.
 ## Dependencies
 - [Vim](https://github.com/vim/vim)
 - [Tmux](https://github.com/tmux/tmux/wiki)
-- [Nerd fonts](https://github.com/ryanoasis/nerd-fonts)
+- [Nerd fonts](https://github.com/ryanoasis/nerd-fonts) *(Optional)*
 
 ## How to run
 
