@@ -11,7 +11,7 @@ according to the needs, the knowledge about the development tools.
 - [Tmux](https://github.com/tmux/tmux/wiki)
 - [Nerd fonts](https://github.com/ryanoasis/nerd-fonts)
 
-# How to run
+## How to run
 
 > Give permission to start.sh file
 ```bash
