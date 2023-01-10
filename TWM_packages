@@ -1,0 +1,12 @@
+xorg
+i3 --no-install-recommends
+picom
+polybar
+lightdm
+slick-greeter
+lightdm-settings
+lxappearance
+nitrogen
+pcmanfm
+imagemagick
+

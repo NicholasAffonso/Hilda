@@ -1,4 +1,12 @@
-" GLOBAL ------------------------------------------------------------------------ {{{
+" VimPlug ---------- {{{
+call plug#begin('~ /.vim/plugged')
+
+Plug 'pangloss/vim-javascript'
+
+call plug#end()
+" ------------------ }}}
+
+" GLOBAL ---------------------------------------------------------------- {{{
 
 " Enter the current millenium
 set nocompatible
@@ -7,7 +15,7 @@ set nocompatible
 filetype on
 
 " Enable plugins and load plugin for the detected file type.
-filetype plugin on
+filetype plugin onautocompletion
 
 " Load an indent file for the detected file type.
 filetype indent on
@@ -21,10 +29,10 @@ set number
 " Highlight cursor line underneath the cursor horizontally.
 set cursorline
 
-" Set shift width to 4 spaces.
+" Set shift width to 2 spaces.
 set shiftwidth=2
 
-" Set tab width to 4 columns.
+" Set tab width to 2 columns.
 set tabstop=2
 
 " Use space characters instead of tabs.
@@ -86,4 +94,4 @@ set nobomb
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
-" }}}
+" --------}}}
