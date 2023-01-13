@@ -1,12 +1,22 @@
 " VimPlug ---------- {{{
 call plug#begin('~ /.vim/plugged')
 
+" Syntax highlighting plugin
 Plug 'pangloss/vim-javascript'
+
+" Enables syntax highlighting for JSDocs.
+let g:javascript_plugin_jsdoc = 1
+" Enables some additional syntax highlighting for NGDocs. Requires JSDoc plugin to be enabled as well.
+let g:javascript_plugin_ngdoc = 1
+" Enables syntax highlighting for Flow.
+let g:javascript_plugin_flow = 1
+
+
 
 call plug#end()
 " ------------------ }}}
 
-" GLOBAL ---------------------------------------------------------------- {{{
+" GLOBAL ----------- {{{
 
 " Enter the current millenium
 set nocompatible
@@ -15,7 +25,7 @@ set nocompatible
 filetype on
 
 " Enable plugins and load plugin for the detected file type.
-filetype plugin onautocompletion
+filetype plugin on 
 
 " Load an indent file for the detected file type.
 filetype indent on
@@ -94,4 +104,5 @@ set nobomb
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
-" --------}}}
+" ------------------ }}}
+
