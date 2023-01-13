@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+#
+# Hilda is a tool to help you
+# place your configuration files or back them up
+# during the after and post installation process
+# of unix system.
+#
+
+clear
+# Verifica se o usuário é root
+[ "$EUID" -ne 0 ] && {
+	printf "Por favor, rode como root"
+	exit 1
+}
+
+#------------------------------| VARIAVEIS |
+LINE="\n------------------------------\n"
+
+# Getting absolute path
+HILDA=$(realpath -s $0)
+printf "Caminho real do Hilda:$LINE$HILDA$LINE"
+
+HILDA_PATH=$(dirname $HILDA)
+printf "Caminho absoluto HILDA_PATH: $LINE$HILDA_PATH$LINE"
+
+# Getting dotfiles
+DOTFILES=($(ls -a $HILDA_PATH/files | awk '{print ($NF)}' | awk 'NR>2'))
+printf "DOTFILES:$LINE${DOTFILES[*]}$LINE"
+
+# Getting users
+USERS=($(ls /home) $HOME)
+printf "\nLista de USUÁRIOS:$LINE${USERS[*]}$LINE"
+
+# Getting lists  
+LISTS=($(ls $HILDA_PATH/lists))
+
+printf "\nPACOTES:$LINE${#LISTS[*]}\n${LISTS[*]}$LINE"
+
+printf "\nPACOTES:$LINE${#pkg[*]}\n${pkg[*]}$LINE"
+
+printf "$LINE"
+
+pkg=($(awk 'length($0) > 1 {print}' $HILDA_PATH/lists/*))
+
+for i in ${pkg[*]}
+do
+	printf "$i\n"
+done
+
+
+#-----------------------------| FIM VARIAVEIS |
+
+# Backup files
+backup(){
+	[ ! -d ${HILDA_PATH/backup} ] && {
+		mkdir $HILDA_PATH/backup
+		printf "Pasta de backup criada"
+		}
+}
+
+PS3="
+Escolha uma opção: "
+items=("Backup do sistema" "Atualizar dotfiles do Hilda")
+while true; do
+	select i in "${items[@]}" Sair; do
+		case "$REPLY" in
+			1) printf "\nOpção $REPLY: $i\n\n"; break;;
+			2) printf "\nOpção $REPLY: $i\n\n"; break;;
+			3) printf "\nSair\n\n"; break 2;;
+			*) printf "\n\nO valor ($REPLY) não é válido\n\n"; break;
+		esac
+	done
+done
+
+# End
+
+exit 0
