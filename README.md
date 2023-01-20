@@ -18,7 +18,7 @@ chmod +x hilda
 
 ## You can also
 
-> Run `hilda i` to install hilda *[ optional ]*
+> Run `hilda i` to install hilda **[ optional ]**
 ```bash
 ./hilda i
 ```
