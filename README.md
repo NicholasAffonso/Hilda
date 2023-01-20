@@ -15,13 +15,15 @@ chmod +x hilda
 ```
 
 ---
+
+## You can also
+
 > Run `hilda i` to install hilda *[ optional ]*
 ```bash
 ./hilda i
 ```
-> once installed just rotate hilda
+once installed just run hilda to open the program
 Some arguments can be passed while calling the rogram
-
 
 > Run `hilda r` to configure your environment
 ```bash
