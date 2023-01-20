@@ -25,7 +25,7 @@ chmod +x hilda
 once installed just run hilda to open the program
 Some arguments can be passed while calling the rogram
 
-> Run `hilda r` to configure your environment
+> Run `hilda r` to restore your environment
 ```bash
 ./hilda r
 ```
