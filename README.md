@@ -1,24 +1,23 @@
-# Dotfiles 
-
-This is a minimalist environment, it doesn't have custom keyboard mappings or extra plugins,
-only native features in Vim and Tmux, it just has aesthetic changes like powerlines with glyphs to give a nicer look.
-
-This environment has the objective of being didactic, making the user learn how to use the core resources and expand,
-according to the needs, the knowledge about the development tools.
+Hilda can handle your configuration files to back up or restore them It was developed in bash script, in debian environment, if your system is debian based you may not have many problems running hilda
 
 ## Dependencies
-- [Vim](https://github.com/vim/vim)
-- [Tmux](https://github.com/tmux/tmux/wiki)
-- [Nerd fonts](https://github.com/ryanoasis/nerd-fonts) *(Optional)*
+- Bash
 
 ## How to run
 
 > Give permission to start.sh file
 ```bash
-chmod +xrw start.sh
+chmod +x hilda
 ```
-
-> Run the start script to configure the environment
+> Run `hilda i` to install hilda *[ optional ]*
 ```bash
-./start.sh
+./hilda i
+```
+> Run `hilda r` to configure your environment
+```bash
+./hilda r
+```
+> Run `hilda b` to backup your environment
+```bash
+./hilda b
 ```
