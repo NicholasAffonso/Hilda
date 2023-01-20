@@ -9,10 +9,12 @@ Hilda can handle your configuration files to back up or restore them It was deve
 ```bash
 chmod +x hilda
 ```
-> Just run `./hilda`
+> Just run `./hilda` to see the menu
 ```bash
 ./hilda
 ```
+
+---
 > Run `hilda i` to install hilda *[ optional ]*
 ```bash
 ./hilda i
