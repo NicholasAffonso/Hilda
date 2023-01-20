@@ -1,0 +1,208 @@
+#!/usr/bin/env bash
+#-------------------------------
+# Script    : Hilda
+# Versão    : Desenvolvimento
+# Autor     : Nicholas Affonso
+# Ciado em  : 17 01 2023
+# Licença   : GNU/GPL v3.0
+#-------------------------------
+# Descrição : 
+#
+# Hilda é um programa que auxilia
+# no processo de backup e restauração
+# das configurações seu ambiente linux debian
+#-------------------------------
+# Uso: 
+#
+# De permissão de execução ao arquivo hilda e
+# inicie o programa com comando ./hilda
+#
+# Leia o documento README para mais informações
+#-------------------------------
+
+line="\n---------------------------------\n"
+
+clear
+# Verifica se o usuário é root
+[ "$EUID" -ne 0 ] && {
+	printf "$line"%c"Por favor, rode como root$line"
+	exit 1
+}
+
+#--------| INÍCIO VARIÁVEIS |--------#
+
+
+# Caminho do diretório do programa
+hilda=$(pwd)
+#printf "\n$line"%c"HILDA:$line$hilda\n"
+
+# Array com os nomes dos dotfiles
+dotfiles=( $(ls -a $hilda/files | awk '{print ($NF)}' | awk 'NR>2') )
+#printf "$line"%c"DOTFILES: ${#dotfiles[*]}$line${dotfiles[*]}"
+
+# Array com os nomes dos doretórios de usuários
+users=( $(ls /home) )
+#printf "\n$line"%c"USUÁRIOS: ${#users[*]}$line${users[*]}\n"
+
+#---------| FIM VARIÁVEIS |----------#
+#------------------------------------#
+#---------| INÍCIO FUNÇÕES |---------#
+
+install(){
+ clear
+ printf "$line"%c"Falta implementar$line"
+ exit 0
+}
+
+# Função de backup
+backup(){
+  clear 
+
+  printf "$line"%c"FAZENDO BACKUP DOS ARQUIVOS$line"
+  
+	mkdir -p $hilda/backup &&
+  mkdir -p $hilda/backup/root &&
+	printf "\nPastas de backup criadas\n"
+
+  for i in "${dotfiles[@]}"
+  do
+    cp -r /root/$i $hilda/backup/root/
+    printf "\nO arquivo $i de /root foi salvo\n"
+  done
+
+  for j in "${users[@]}"
+  do
+    mkdir -p $hilda/backup/$j
+    cp -r /home/$j/$i $hilda/backup/$j/$i
+    printf "\nO arquivo $i de $j foi salvo\n"
+  done
+
+  printf "$line"%c"BACKUP COMPLETO$line"
+
+  exit 0
+}
+
+# Função de recuperação
+restore(){
+  clear
+
+  printf "$line"%c"COPIANDO ARQUIVOS$line"
+
+  for i in "${dotfiles[@]}"
+  do
+    # Verifica se os arquivos são iguais
+    # caso um arquivo não exista, também retorna um valor diferente de 0
+    diff $hilda/files/$i /root/$i &> /dev/null
+    if [[ $? -ne 0 ]]; # Caso não sejam
+      then
+        cp -r $hilda/files/$i /root &&
+        printf "
+           ARQUIVO  : $i
+      COPIADO PARA  : root
+        "
+      else # Caso sejam
+        printf "$i tualizado em /root\n"
+    fi
+
+    for j in "${users[@]}"
+    do 
+    # Verifica se os arquivos são iguais
+    # caso um arquivo não exista, também retorna um valor diferente de 0
+    diff $hilda/files/$i /root/$i &> /dev/null
+    if [[ $? -ne 0 ]]; # Caso não sejam
+    then
+      cp -r $hilda/files/$i /home/$j
+      printf "
+            ARQUIVO : $i
+      COPIADO PARA  : $j
+      "
+    else # Caso sejam
+      printf "$i está atualizado em $j\n"
+    fi
+
+    done
+  done
+  printf "$line"%c"ARQUIVOS DE CONFIGURAÇÃO RESTAURADOS$line"
+
+  exit 0
+} 
+
+ajuda(){
+  clear
+	printf "$line"%c"Modo de uso$line Se o programa não foi instalado passe o endereço para executar, ex: ./hilda
+  
+ Se o programa foi instalado basta rodar o comando hilda
+ Ou passe um argumento junto para executar uma tarefa$line"%c"Sintaxe: hilda op$line OPÇÕES\n
+ i) : Instala o programa
+ r) : Restaura o ultimo backup
+ b) : Faz um backup dos arquivos
+ v) : Mostra a versão do programa
+ h) : Exibe esse guia
+  $line"
+  exit 0
+}
+
+menu(){
+  clear
+
+  PS3="
+Escolha uma opção: "
+
+  printf "\n"  
+
+  select opt in "Instalar ou desinstalar o hilda" "Restaurar configuração" "Fazer backup da configuração atual" "Ajuda" "Sair"
+  do
+    case $opt in
+      "Instalar ou desinstalar o hilda") install;;
+      "Restaurar configuração") restore;;
+      "Fazer backup da configuração atual" ) backup;;
+      "Ajuda") ajuda;;
+      "Sair") clear; printf "$line"%c"Sessão encerrada.$line"; break;;
+      *) clear; printf "Opção inválida";;
+    esac
+  done
+
+  exit 0
+}
+
+#---------| FIM FUNÇÕES |------------#
+#------------------------------------#
+#---------| INÍCIO DO PROGRAMA |-----#
+
+# Verificação de parâmetros passados pelo usuário
+
+param=( "i" "b" "r" "v" )
+
+[[ $1 == "i" ]] &&
+  install &&
+  exit 0
+ 
+[[ $1 == "b" ]] &&
+  backup &&
+  exit 0
+ 
+
+[[ $1 == "b" ]] &&
+  backup &&
+  exit 0
+  
+[[ $1 == "r" ]] &&
+  restore && 
+  exit 0
+
+[[ $1 == "v" ]] &&
+  printf "$line"%c"Versão de desenvolvimento$line\n" &&
+  exit 0
+
+[[ $1 > 0 ]] && [[ $1 != "${param[@]}" ]] &&
+  ajuda &&
+  exit 0
+
+menu
+
+exit 0
+#------------------------------------#
+#---------| FIM DO PROGRAMA |--------#
+#------------------------------------#
+
+

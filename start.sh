@@ -10,10 +10,9 @@
 clear
 # Run as root
 
-if [ "$EUID" -ne 0 ]; then
-	echo "Please run as root"
-	exit
-fi
+[[ $EUID -ne 0 ]] &&
+	echo "Rode o programa em modo root" &&
+	exit 1
 
 #
 # INSTALL THEMES & DOTFILES
@@ -40,20 +39,20 @@ cp -ri $TMUXCONF $HOME
 #
 #fi
 	
-##
+#
 
 # Remove old instalation
-###
+#
 
 # Install vim Plug
 curl -fLo /home/dricca/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Backup tmux plugins
-###
+
 
 # Remove old instalation
-###
+
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm /home/dricca/.tmux/plugins/tpms
@@ -83,29 +82,30 @@ apt install \
 #
 # Install TWM and others packages
 #
-#apt install \
-	# Xorg :: Display server
-#	xorg \
-	# i3wm :: Tiling window manager TWM
-#	i3 --no-install-recommends \
-	# Picom	:: Compositor for X
-#	picom \
-	# Polybar :: Tool for creating status bars
-#	polybar \
-	# Lightdm :: Display manager
-#	lightdm  \
-	# Slick-greeter :: GUI that prompts the user for credentials
-#	slick-greeter \
-	# Lightdm-settings :: A configuration tool for the LightDM
-#	lightdm-settings \
-	# Lxappearance :: A desktop-independent theme switcher
-#	lxappearance \
-	# Nitrogen :: Desktop background browser and setter
-#	nitrogen \
-	# Pcmanfm :: File manager
-#	pcmanfm \
-	# Imagemagick :: CLI for manipulation of digital images
-#	imagemagick
+# apt install \
+#
+# Xorg                 :: Display server
+#                       	xorg \
+# i3wm                 :: Tiling window manager TWM
+#                       	i3 --no-install-recommends \
+# Picom	               :: Compositor for X
+#                       	picom \
+# Polybar              :: Tool for creating status bars
+#                       	polybar \
+# Lightdm              :: Display manager
+#                       	lightdm  \
+# Slick-greeter        :: GUI that prompts the user for credentials
+#                       	slick-greeter \
+# Lightdm-settings     :: A configuration tool for the LightDM
+#                       	lightdm-settings \
+# Lxappearance         :: A desktop-independent theme switcher
+#                       	lxappearance \
+# Nitrogen             :: Desktop background browser and setter
+#                       	nitrogen \
+# Pcmanfm              :: File manager
+#                       	pcmanfm \
+# Imagemagic           :: CLI for manipulation of digital images
+#                         imagemagick
 
 #
 # Inatall Nerdfonts
