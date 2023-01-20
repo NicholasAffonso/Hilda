@@ -18,7 +18,7 @@ chmod +x hilda
 
 ## You can also
 
-> Run `hilda i` to install hilda **[ optional ]**
+> Run `hilda i` to install hilda
 ```bash
 ./hilda i
 ```
@@ -32,4 +32,14 @@ Some arguments can be passed while calling the rogram
 > Run `hilda b` to backup your environment
 ```bash
 ./hilda b
+```
+
+> Run `hilda v` to see the version
+```bash
+./hilda v
+```
+
+> Run `hilda h` to see the help text
+```bash
+./hilda h
 ```
