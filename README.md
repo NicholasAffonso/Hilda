@@ -9,10 +9,18 @@ Hilda can handle your configuration files to back up or restore them It was deve
 ```bash
 chmod +x hilda
 ```
+> Just run `./hilda`
+```bash
+./hilda
+```
 > Run `hilda i` to install hilda *[ optional ]*
 ```bash
 ./hilda i
 ```
+> once installed just rotate hilda
+Some arguments can be passed while calling the rogram
+
+
 > Run `hilda r` to configure your environment
 ```bash
 ./hilda r
