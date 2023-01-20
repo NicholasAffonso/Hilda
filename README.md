@@ -5,7 +5,7 @@ Hilda can handle your configuration files to back up or restore them It was deve
 
 ## How to run
 
-> Give permission to start.sh file
+> Give permission to hilda
 ```bash
 chmod +x hilda
 ```
