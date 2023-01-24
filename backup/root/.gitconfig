@@ -1,9 +1,0 @@
-[user]
-	name = nicholasaffonso
-	email = nicholasaffonsop@gmail.com
-[color]
-	ui = auto
-[core]
-	editor = vim
-[init]
-	defaultBranch = main

@@ -20,7 +20,7 @@
 # Leia o documento README para mais informações
 #-------------------------------
 
-line="\n---------------------------------\n"
+line="\n----------------------------------------\n"
 
 clear
 # Verifica se o usuário é root
@@ -33,8 +33,7 @@ clear
 
 
 # Caminho do diretório do programa
-hilda=$(pwd)
-#printf "\n$line"%c"HILDA:$line$hilda\n"
+hilda=$(dirname "$0")
 
 # Array com os nomes dos dotfiles
 dotfiles=( $(ls -a $hilda/files | awk '{print ($NF)}' | awk 'NR>2') )
@@ -97,11 +96,14 @@ restore(){
       then
         cp -r $hilda/files/$i /root &&
         printf "
-           ARQUIVO  : $i
-      COPIADO PARA  : root
+           ARQUIVO : $i
+      COPIADO PARA : root
         "
       else # Caso sejam
-        printf "$i tualizado em /root\n"
+        printf "
+           ARQUIVO : $i
+	ATUALIZADO : root
+	"
     fi
 
     for j in "${users[@]}"
@@ -113,11 +115,14 @@ restore(){
     then
       cp -r $hilda/files/$i /home/$j
       printf "
-            ARQUIVO : $i
-      COPIADO PARA  : $j
+           ARQUIVO : $i
+      COPIADO PARA : $j
       "
     else # Caso sejam
-      printf "$i está atualizado em $j\n"
+	printf "
+	   ARQUIVO : $i
+	ATUALIZADO : $j
+	"
     fi
 
     done
@@ -143,7 +148,8 @@ ajuda(){
 }
 
 menu(){
-  clear
+
+clear
 
   PS3="
 Escolha uma opção: "
@@ -200,9 +206,9 @@ param=( "i" "b" "r" "v" )
 
 menu
 
+printf "/n"
+
 exit 0
 #------------------------------------#
 #---------| FIM DO PROGRAMA |--------#
 #------------------------------------#
-
-
