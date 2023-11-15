@@ -1,6 +1,6 @@
 " VimPlug ---------- {{{
 
-" Installa o VimPlug se não for encontrado
+" Instala o VimPlug se não for encontrado
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
