@@ -46,6 +46,9 @@ syntax on
 " Habilita numeração das linhas.
 set number
 
+" Habilita numeração relativa das linhas
+set relativenumber
+
 " Habilita o highlight horizontalmente na linha que está posicionado o cursor.
 set cursorline
 
